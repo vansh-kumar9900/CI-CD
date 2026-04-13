@@ -6,3 +6,5 @@ jobs:
     steps:                               
       - name: Print message
         run: echo "Hello, github Actions!"
+      - name: Print name
+        run: echo "Vansh"
