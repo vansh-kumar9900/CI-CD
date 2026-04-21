@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "test": "echo test successfull"
+  },
   "dependencies": {
     "body-parser": "^2.2.2",
     "eslint": "^10.2.1",
