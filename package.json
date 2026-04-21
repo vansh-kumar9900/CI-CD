@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "echo test successfull"
+    "test": "exit 1"
   },
   "dependencies": {
     "body-parser": "^2.2.2",
