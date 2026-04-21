@@ -5,6 +5,7 @@ on:
   pull_request:
 
 jobs:
+
   test:
     runs-on: ubuntu-latest
 
@@ -28,3 +29,10 @@ jobs:
       
       - name: running test
         run: npm run test
+
+  Deploy-app:
+    needs: test
+    runs-on: ubunutu-latest
+    steps:
+      - name: deploy
+        run: echo "deploy successful"
