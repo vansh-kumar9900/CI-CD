@@ -1,38 +1,25 @@
-name: Uses action
 
-on:
-  push:
-  pull_request:
-
+name: using artifacts to communicate between VMs
+on: push
 jobs:
-
-  test:
+  job1:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js 18
-        uses: actions/setup-node@v4
+      - name: create a file
+        run: echo "Hello World" > file.txt
+      - name: upload on artifact
+        uses: actions/upload artifact@v4
         with:
-          node-version: 18
-
-      - name: Check Node version
-        run: node -v
-
-      - name: List files
-        run: ls
-
-      - name: download dependencies
-        run : npm i
-      
-      - name: running test
-        run: npm run test
-
-  Deploy-app:
-    needs: test
+          name: my file
+          path: file.txt
+  job2:
+    needs: job1
     runs-on: ubuntu-latest
-    steps:
-      - name: deploy
-        run: echo "deploy successful"
+    steps: 
+      - name: download a file
+        uses: actions/download artifact@v4
+        with:
+          name: my-file
+
+      - name: read file.txt
+        run: cat file.txt
